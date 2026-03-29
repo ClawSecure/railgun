@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Railgun Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=optional" as="style">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=optional" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════════════════
+   RAILGUN DASHBOARD - Premium Dark Glass Theme
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Theme tokens ──────────────────────────────────────────────── */
+:root {
+  /* Text */
+  --text-primary: #e0e4ea;
+  --text-secondary: #7a8194;
+  --text-tertiary: #9aa0b0;
+
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.06);
+  --border-light: rgba(255, 255, 255, 0.04);
+  --border-accent: rgba(137, 206, 255, 0.1);
+
+  /* Shadows */
+  --shadow: rgba(0, 0, 0, 0.4);
+  --shadow-heavy: rgba(0, 0, 0, 0.6);
+
+  /* Overlay */
+  --overlay: rgba(2, 3, 6, 0.82);
+
+  /* Header */
+  --header-select-bg: rgba(26, 27, 32, 0.9);
+
+  /* Primary accent - Electric Blue */
+  --accent-green: #00b4ff;
+  --accent-green-subtle: rgba(0, 180, 255, 0.12);
+  --accent-teal: #89ceff;
+  --accent-teal-subtle: rgba(137, 206, 255, 0.12);
+
+  /* Danger accent - Crimson */
+  --accent-orange: #ffb3ad;
+  --accent-orange-subtle: rgba(255, 179, 173, 0.12);
+  --accent-muted: rgba(255, 255, 255, 0.04);
+  --accent-orange-faint: rgba(156, 0, 21, 0.15);
+  --accent-highlight: #89ceff;
+
+  /* Code blocks */
+  --bg-code: rgba(6, 7, 12, 0.7);
+
+  /* Glass shared values */
+  --glass-blur: blur(20px) saturate(1.5);
+  --glass-blur-heavy: blur(32px) saturate(1.6);
+  --glass-inner-glow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --glass-outer-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Base reset ────────────────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── Body - Rich atmospheric background ────────────────────────── */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #05060a;
+  background-image:
+    radial-gradient(ellipse at 10% 0%, rgba(0, 140, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 10%, rgba(200, 100, 50, 0.10) 0%, transparent 40%),
+    radial-gradient(ellipse at 40% 100%, rgba(0, 100, 200, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(100, 50, 150, 0.06) 0%, transparent 40%),
+    radial-gradient(ellipse at 60% 0%, rgba(180, 120, 40, 0.06) 0%, transparent 35%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  height: 100vh;
+  overflow: hidden;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(137, 206, 255, 0.12);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(137, 206, 255, 0.25);
+}
+
+/* ── Header - Floating glass navbar ────────────────────────────── */
+header {
+  background: rgba(10, 12, 18, 0.5);
+  backdrop-filter: var(--glass-blur-heavy);
+  -webkit-backdrop-filter: var(--glass-blur-heavy);
+  border-bottom: 1px solid rgba(137, 206, 255, 0.12);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  box-shadow:
+    0 1px 0 rgba(137, 206, 255, 0.06),
+    0 4px 40px rgba(0, 0, 0, 0.5),
+    var(--glass-inner-glow);
+  position: relative;
+  z-index: 10;
+}
+
+header img {
+  height: 36px;
+  border-radius: 12px;
+}
+
+header h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+  min-width: 200px;
+}
+
+header h1 .h1-sub {
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-left: 6px;
+}
+
+/* ── Select dropdown - Glass style ─────────────────────────────── */
+select {
+  background: rgba(16, 18, 26, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #e0e4ea;
+  border: 1px solid rgba(137, 206, 255, 0.12);
+  border-radius: 12px;
+  padding: 8px 32px 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2389ceff' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px 8px;
+  min-width: 180px;
+}
+
+select option {
+  background: var(--header-select-bg);
+  color: #fff;
+}
+
+select:focus {
+  outline: none;
+  border-color: rgba(0, 180, 255, 0.45);
+  box-shadow:
+    0 0 24px rgba(0, 180, 255, 0.18),
+    0 0 0 1px rgba(0, 180, 255, 0.12);
+}
+
+/* ── Board ─────────────────────────────────────────────────────── */
+.board {
+  display: flex;
+  gap: 16px;
+  padding: 24px;
+  overflow-x: auto;
+  flex: 1;
+  overflow-y: hidden;
+  background: transparent;
+}
+
+/* ── Columns - Frosted glass panels ────────────────────────────── */
+.column {
+  min-width: 240px;
+  flex: 1;
+  background: rgba(14, 16, 22, 0.4);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(137, 206, 255, 0.12);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 1px 0 rgba(137, 206, 255, 0.04),
+    var(--glass-inner-glow);
+}
+
+.column-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #89ceff;
+  background: rgba(137, 206, 255, 0.02);
+  border-radius: 12px 12px 0 0;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.column-header .count {
+  background: rgba(0, 180, 255, 0.2);
+  color: #89ceff;
+  border-radius: 8px;
+  padding: 2px 8px;
+  font-size: 11px;
+  margin-left: 8px;
+  font-weight: 600;
+}
+
+.cards {
+  padding: 8px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+}
+
+/* ── Cards - Glass cards with translucency ─────────────────────── */
+.card {
+  background: rgba(20, 22, 30, 0.5);
+  backdrop-filter: blur(12px) saturate(1.3);
+  -webkit-backdrop-filter: blur(12px) saturate(1.3);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 14px;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.2),
+    var(--glass-inner-glow);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 180, 255, 0.35);
+  box-shadow:
+    0 8px 40px rgba(0, 180, 255, 0.15),
+    0 0 0 1px rgba(0, 180, 255, 0.1),
+    inset 0 1px 0 rgba(137, 206, 255, 0.08);
+}
+
+.card:active {
+  transform: scale(0.98);
+}
+
+.card-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-meta {
+  font-size: 11px;
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card.done {
+  border-left: 3px solid #00b4ff;
+}
+
+.card.failed, .card.error {
+  border-left: 3px solid #ffb3ad;
+}
+
+/* ── Overlay / Panel - Premium glass modal ─────────────────────── */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(5, 6, 10, 0.88);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  will-change: transform;
+}
+
+.overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.panel {
+  background: #0e1016;
+  border: 1px solid rgba(137, 206, 255, 0.12);
+  border-top: 1px solid rgba(137, 206, 255, 0.18);
+  border-radius: 16px;
+  width: 90%;
+  max-width: 640px;
+  max-height: 85vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 24px;
+  position: relative;
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.6),
+    0 0 80px rgba(0, 180, 255, 0.06),
+    0 0 0 1px rgba(137, 206, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.panel-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 12px;
+  transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.panel-close:hover {
+  color: #89ceff;
+  background: rgba(0, 180, 255, 0.1);
+  box-shadow: 0 0 16px rgba(0, 180, 255, 0.12);
+}
+
+.panel h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  padding-right: 40px;
+}
+
+.panel-task {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 120px;
+  overflow-y: auto;
+  line-height: 1.5;
+}
+
+.panel-meta {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+}
+
+.panel-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ── Steps - Glass rows ────────────────────────────────────────── */
+.steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.step-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: rgba(20, 22, 30, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--glass-inner-glow);
+}
+
+.step-row:hover {
+  border-color: rgba(137, 206, 255, 0.15);
+  box-shadow:
+    0 2px 16px rgba(0, 180, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.step-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.step-icon.done {
+  background: rgba(0, 180, 255, 0.15);
+  color: #00b4ff;
+  box-shadow: 0 0 8px rgba(0, 180, 255, 0.15);
+}
+
+.step-icon.running {
+  background: rgba(137, 206, 255, 0.15);
+  color: #89ceff;
+  box-shadow: 0 0 8px rgba(137, 206, 255, 0.15);
+  animation: stepPulse 2s ease-in-out infinite;
+}
+
+.step-icon.pending {
+  background: var(--accent-muted);
+  color: var(--text-secondary);
+}
+
+.step-icon.waiting {
+  background: var(--accent-muted);
+  color: var(--text-secondary);
+}
+
+.step-icon.failed, .step-icon.error {
+  background: rgba(255, 179, 173, 0.15);
+  color: #ffb3ad;
+  box-shadow: 0 0 8px rgba(255, 179, 173, 0.15);
+}
+
+.step-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.step-agent {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-family: 'Space Grotesk', monospace;
+}
+
+.step-status {
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ── Badges ────────────────────────────────────────────────────── */
+.badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: 0.3px;
+}
+
+.badge-running {
+  background: rgba(137, 206, 255, 0.15);
+  color: #89ceff;
+  box-shadow: inset 0 0 0 1px rgba(137, 206, 255, 0.1);
+}
+
+.badge-done, .badge-completed {
+  background: rgba(0, 180, 255, 0.15);
+  color: #00b4ff;
+  box-shadow: inset 0 0 0 1px rgba(0, 180, 255, 0.1);
+}
+
+.badge-failed, .badge-error {
+  background: rgba(255, 179, 173, 0.15);
+  color: #ffb3ad;
+  box-shadow: inset 0 0 0 1px rgba(255, 179, 173, 0.1);
+}
+
+.badge-waiting {
+  background: var(--accent-muted);
+  color: var(--text-secondary);
+}
+
+.badge-pending {
+  background: var(--accent-muted);
+  color: var(--text-secondary);
+}
+
+.badge-blocked {
+  background: var(--accent-orange-faint);
+  color: var(--accent-orange);
+  box-shadow: inset 0 0 0 1px rgba(156, 0, 21, 0.1);
+}
+
+/* ── Buttons ───────────────────────────────────────────────────── */
+button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  box-shadow: 0 0 20px rgba(0, 180, 255, 0.2);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* ── Misc ──────────────────────────────────────────────────────── */
+.empty {
+  color: var(--text-secondary);
+  font-size: 12px;
+  text-align: center;
+  padding: 24px 8px;
+}
+
+.refresh-note {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: 0.3px;
+}
+
+.header-brand {
+  margin-left: auto;
+  color: #dc1a2b;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: color 0.2s, text-shadow 0.2s;
+  min-width: 90px;
+}
+.header-brand:hover {
+  color: #ff2a3d;
+  text-shadow: 0 0 16px rgba(220, 26, 43, 0.5), 0 0 40px rgba(220, 26, 43, 0.2);
+}
+
+/* ── How It Works button ─────────────────────────────────────── */
+.how-btn {
+  background: rgba(20, 22, 30, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(137, 206, 255, 0.1);
+  border-radius: 12px;
+  color: #89ceff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, color 0.2s;
+  letter-spacing: 0.3px;
+  min-width: 100px;
+}
+.how-btn:hover {
+  border-color: rgba(0, 180, 255, 0.3);
+  box-shadow: 0 0 16px rgba(0, 180, 255, 0.15);
+  color: #00b4ff;
+}
+
+/* ── How It Works panel ──────────────────────────────────────── */
+.how-panel {
+  position: fixed;
+  top: 60px;
+  right: 16px;
+  width: 420px;
+  max-height: 80vh;
+  background: #0e1016;
+  border: 1px solid rgba(137, 206, 255, 0.1);
+  border-top: 1px solid rgba(137, 206, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 180, 255, 0.04);
+  z-index: 50;
+  overflow: hidden;
+  display: none;
+  flex-direction: column;
+}
+.how-panel.open { display: flex; }
+.how-panel-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 15px;
+  font-weight: 600;
+  color: #e0e4ea;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.how-panel-close {
+  background: none;
+  border: none;
+  color: #7a8194;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: color 0.15s, background 0.15s;
+}
+.how-panel-close:hover { color: #89ceff; background: rgba(0, 180, 255, 0.08); box-shadow: none; }
+.how-panel-body {
+  padding: 16px 20px;
+  overflow-y: auto;
+  flex: 1;
+  font-size: 13px;
+  color: #9aa0b0;
+  line-height: 1.7;
+}
+.how-panel-body h3 {
+  color: #89ceff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 16px 0 8px 0;
+}
+.how-panel-body h3:first-child { margin-top: 0; }
+.how-panel-body ul {
+  list-style: none;
+  padding: 0;
+}
+.how-panel-body li {
+  padding: 6px 0;
+  padding-left: 16px;
+  position: relative;
+}
+.how-panel-body li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #00b4ff;
+}
+.how-panel-body .tldr {
+  background: rgba(0, 180, 255, 0.06);
+  border: 1px solid rgba(0, 180, 255, 0.1);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  color: #e0e4ea;
+  font-size: 13px;
+}
+.how-panel-body .tldr strong { color: #00b4ff; }
+.how-panel-body .divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  margin: 16px 0;
+}
+@media (max-width: 768px) { .how-panel { width: calc(100% - 32px); right: 16px; } }
+
+.story-open { display: block !important; }
+.story-chevron-open { transform: rotate(90deg); }
+.step-open { display: block !important; }
+.step-chevron-open { transform: rotate(90deg); }
+
+/* ── Footer ────────────────────────────────────────────────────── */
+footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(10, 12, 18, 0.3);
+}
+
+footer a:hover {
+  color: #00b4ff !important;
+  text-shadow: 0 0 12px rgba(0, 180, 255, 0.3);
+}
+
+/* ── Medic indicator ───────────────────────────────────────────── */
+.medic-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  padding: 6px 14px;
+  border: 1px solid rgba(0, 180, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(0, 180, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  font-family: 'Space Grotesk', sans-serif;
+  animation: medicBreathe 3s ease-in-out infinite;
+  min-width: 140px;
+}
+@keyframes medicBreathe {
+  0%, 100% { box-shadow: 0 0 8px rgba(0, 180, 255, 0.05); }
+  50% { box-shadow: 0 0 16px rgba(0, 180, 255, 0.12); }
+}
+
+.medic-badge:hover {
+  border-color: rgba(0, 180, 255, 0.3);
+  background: rgba(0, 180, 255, 0.08);
+  box-shadow: 0 0 20px rgba(0, 180, 255, 0.15);
+  animation: none;
+}
+
+.medic-time {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Space Grotesk', sans-serif;
+  position: relative;
+  min-width: 80px;
+}
+
+.medic-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  will-change: transform, box-shadow;
+}
+
+.medic-dot.healthy {
+  background: #00b4ff;
+  box-shadow: 0 0 12px rgba(0, 180, 255, 0.8), 0 0 30px rgba(0, 180, 255, 0.5), 0 0 50px rgba(0, 180, 255, 0.2);
+  animation: dotPulse 1.5s ease-in-out infinite;
+}
+
+.medic-dot.warning {
+  background: #fbbf24;
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.8), 0 0 30px rgba(251, 191, 36, 0.4), 0 0 50px rgba(251, 191, 36, 0.15);
+  animation: dotPulseWarn 1.5s ease-in-out infinite;
+}
+
+.medic-dot.critical {
+  background: #ff4444;
+  box-shadow: 0 0 12px rgba(255, 68, 68, 0.8), 0 0 30px rgba(255, 68, 68, 0.5), 0 0 50px rgba(255, 68, 68, 0.2);
+  animation: dotPulseCrit 0.8s ease-in-out infinite;
+}
+
+.medic-dot.unknown {
+  background: #6b7280;
+  box-shadow: 0 0 6px rgba(107, 114, 128, 0.4);
+  animation: dotPulse 3s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(0, 180, 255, 0.4), 0 0 12px rgba(0, 180, 255, 0.2); transform: scale(1); }
+  50% { box-shadow: 0 0 16px rgba(0, 180, 255, 1), 0 0 40px rgba(0, 180, 255, 0.6), 0 0 60px rgba(0, 180, 255, 0.3); transform: scale(1.3); }
+}
+@keyframes dotPulseWarn {
+  0%, 100% { box-shadow: 0 0 6px rgba(251, 191, 36, 0.4), 0 0 12px rgba(251, 191, 36, 0.2); transform: scale(1); }
+  50% { box-shadow: 0 0 16px rgba(251, 191, 36, 1), 0 0 40px rgba(251, 191, 36, 0.6), 0 0 60px rgba(251, 191, 36, 0.3); transform: scale(1.3); }
+}
+@keyframes dotPulseCrit {
+  0%, 100% { box-shadow: 0 0 6px rgba(255, 68, 68, 0.4), 0 0 12px rgba(255, 68, 68, 0.2); transform: scale(1); }
+  50% { box-shadow: 0 0 16px rgba(255, 68, 68, 1), 0 0 40px rgba(255, 68, 68, 0.6), 0 0 60px rgba(255, 68, 68, 0.3); transform: scale(1.3); }
+}
+
+/* ── Medic panel - Glass floating panel ────────────────────────── */
+.medic-panel {
+  position: fixed;
+  top: 60px;
+  right: 16px;
+  width: 340px;
+  max-height: 500px;
+  background: #0e1016;
+  border: 1px solid rgba(137, 206, 255, 0.1);
+  border-top: 1px solid rgba(137, 206, 255, 0.15);
+  border-radius: 12px;
+  box-shadow:
+    0 12px 48px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(0, 180, 255, 0.04),
+    var(--glass-inner-glow);
+  z-index: 50;
+  overflow: hidden;
+  display: none;
+  flex-direction: column;
+}
+
+.medic-panel.open {
+  display: flex;
+}
+
+.medic-panel-header {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(137, 206, 255, 0.02);
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.medic-panel-body {
+  padding: 12px 16px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.medic-stat {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.medic-stat:last-child {
+  border-bottom: none;
+}
+
+.medic-stat-value {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.medic-check-row {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.medic-check-row:last-child {
+  border-bottom: none;
+}
+
+.medic-check-time {
+  color: var(--text-secondary);
+  font-family: 'Space Grotesk', monospace;
+}
+
+.medic-check-summary {
+  color: var(--text-primary);
+  margin-left: 8px;
+}
+
+/* ── Animations ────────────────────────────────────────────────── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+@keyframes stepPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(137, 206, 255, 0.15); }
+  50% { box-shadow: 0 0 14px rgba(137, 206, 255, 0.35); }
+}
+
+/* ── Responsive ────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .board {
+    flex-direction: column;
+  }
+  .column {
+    min-width: unset;
+  }
+  .medic-panel {
+    width: calc(100% - 32px);
+    right: 16px;
+  }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Railgun<span class="h1-sub">Dashboard</span></h1>
+  <select id="wf-select"><option value="">Loading...</option></select>
+  <div class="medic-badge" id="medic-badge" onclick="toggleMedicPanel()" title="Workflow health monitor">
+    <span id="medic-label">Health Monitor</span>
+  </div>
+  <span class="medic-time" id="medic-time"><span class="medic-dot unknown" id="medic-dot"></span><span id="medic-time-text"></span></span>
+  <span class="refresh-note" id="refresh-note">Auto-refresh: 30s</span>
+  <button class="how-btn" onclick="document.getElementById('how-panel').classList.toggle('open')">How It Works</button>
+  <a href="https://www.clawsecure.ai" target="_blank" rel="noopener" class="header-brand">ClawSecure</a>
+</header>
+<div class="board" id="board"><div class="empty" style="margin:auto">Select a workflow</div></div>
+<footer style="text-align:center;padding:12px 24px;font-size:12px;color:#7a8194;font-family:'Space Grotesk',sans-serif;border-top:1px solid rgba(255,255,255,0.04);background:rgba(10,12,18,0.5);">
+  Built by <a href="https://www.clawsecure.ai" target="_blank" rel="noopener" style="color:#dc1a2b;text-decoration:none;transition:color 0.15s,text-shadow 0.15s;" onmouseover="this.style.color='#ff2a3d';this.style.textShadow='0 0 12px rgba(220,26,43,0.4)'" onmouseout="this.style.color='#dc1a2b';this.style.textShadow='none'">ClawSecure</a> | The Integrity Layer for AI Agents
+</footer>
+<div class="how-panel" id="how-panel">
+  <div class="how-panel-header">How Railgun Works<button class="how-panel-close" onclick="document.getElementById('how-panel').classList.remove('open')">×</button></div>
+  <div class="how-panel-body">
+    <div class="tldr">
+      <strong>TL;DR:</strong> You define your AI agents and their steps in a simple YAML file. Railgun runs them in order, one by one, passing each agent's output to the next. No agent decides the flow. The file does. That's why it's reliable.
+    </div>
+
+    <h3>The Simple Version</h3>
+    <ul>
+      <li>Think of it as an assembly line for AI agents</li>
+      <li>Each agent gets a fresh start |no bloated context windows</li>
+      <li>Work passes from one agent to the next via a "clipboard"</li>
+      <li>If step 4 breaks, you fix step 4 |not the whole conversation</li>
+      <li>The board above shows your workflow steps as columns, with runs as cards</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <h3>How a Run Works</h3>
+    <ul>
+      <li>A workflow defines steps in sequence (the columns you see above)</li>
+      <li>Each step is assigned to a specific agent with its own role</li>
+      <li>Agents poll for work using a two-phase system |cheap check first, expensive model only when there's work</li>
+      <li>When an agent completes its step, the output becomes input for the next step</li>
+      <li>Everything is tracked in SQLite |every step, every output, every failure</li>
+    </ul>
+
+    <h3>Why This Matters</h3>
+    <ul>
+      <li><strong>Cost control</strong> |each agent only uses tokens for its one job, not re-reading entire histories</li>
+      <li><strong>Reliability</strong> |deterministic YAML sequence, not AI deciding what to do next</li>
+      <li><strong>Debuggable</strong> |click any card to see exactly what the agent received and produced</li>
+      <li><strong>Retry logic</strong> |failed steps retry automatically with configurable limits</li>
+      <li><strong>Health monitoring</strong> |the Health Monitor detects stuck, stalled, or dead runs</li>
+    </ul>
+
+    <h3>Key Commands</h3>
+    <ul>
+      <li><strong>clawsecure-railgun workflow list</strong> |see available workflows</li>
+      <li><strong>clawsecure-railgun workflow run &lt;name&gt; "task"</strong> |start a run</li>
+      <li><strong>clawsecure-railgun workflow status &lt;query&gt;</strong> |check run status</li>
+      <li><strong>clawsecure-railgun dashboard start</strong> |launch this dashboard</li>
+      <li><strong>clawsecure-railgun medic run</strong> |run health checks manually</li>
+    </ul>
+  </div>
+</div>
+
+<div class="medic-panel" id="medic-panel">
+  <div class="medic-panel-header">Workflow Health Monitor</div>
+  <div class="medic-panel-body" id="medic-panel-body">Loading...</div>
+</div>
+<div class="overlay" id="overlay" onclick="if(event.target===this)closePanel()">
+  <div class="panel" id="panel"></div>
+</div>
+
+<script>
+const API = '';
+let workflows = [];
+let currentWf = null;
+let openRunId = null;
+let openRunRefreshInterval = null;
+
+function clearOpenRunRefresh() {
+  if (openRunRefreshInterval) {
+    clearInterval(openRunRefreshInterval);
+    openRunRefreshInterval = null;
+  }
+}
+
+function startOpenRunRefresh() {
+  // Disabled: auto-refresh while panel is open causes scroll resets
+  // and unnecessary DOM rebuilds. Panel content loads fresh on open.
+}
+
+async function fetchJSON(url) {
+  const r = await fetch(API + url);
+  return r.json();
+}
+
+async function loadWorkflows() {
+  workflows = await fetchJSON('/api/workflows');
+  const sel = document.getElementById('wf-select');
+  sel.innerHTML = '<option value="">Select workflow</option>' +
+    workflows.map(w => `<option value="${w.id}">${w.name}</option>`).join('');
+  if (workflows.length === 1) {
+    sel.value = workflows[0].id;
+    selectWorkflow(workflows[0].id);
+  } else if (workflows.length > 1) {
+    // Auto-select workflow with active runs
+    try {
+      for (const w of workflows) {
+        const runs = await fetchJSON(`/api/runs?workflow=${w.id}`);
+        const active = runs.find(r => r.status === 'running' || r.status === 'pending');
+        if (active) { sel.value = w.id; selectWorkflow(w.id); break; }
+      }
+    } catch {}
+  }
+}
+
+function selectWorkflow(id) {
+  currentWf = workflows.find(w => w.id === id) || null;
+  if (currentWf) loadRuns();
+  else document.getElementById('board').innerHTML = '<div class="empty" style="margin:auto">Select a workflow</div>';
+}
+
+async function loadRuns() {
+  if (!currentWf) return;
+  const runs = await fetchJSON(`/api/runs?workflow=${currentWf.id}`);
+  renderBoard(currentWf, runs);
+}
+
+function getActiveStepId(run) {
+  if (!run.steps || !run.steps.length) return null;
+  const active = run.steps.find(s => s.status !== 'done' && s.status !== 'skipped');
+  return active ? active.step_id : run.steps[run.steps.length - 1].step_id;
+}
+
+function renderBoard(wf, runs) {
+  const board = document.getElementById('board');
+  const columns = {};
+  wf.steps.forEach(s => { columns[s.id] = []; });
+
+  runs.forEach(run => {
+    const stepId = getActiveStepId(run);
+    const col = stepId && columns[stepId] !== undefined ? stepId : wf.steps[wf.steps.length - 1]?.id;
+    if (col && columns[col]) columns[col].push(run);
+  });
+
+  const newHTML = wf.steps.map(step => {
+    const cards = columns[step.id];
+    const cardHTML = cards.length === 0
+      ? '<div class="empty">No runs</div>'
+      : cards.map(run => {
+          const isDone = run.status === 'done';
+          const isFailed = run.status === 'failed' || run.status === 'error';
+          const cls = isDone ? 'done' : isFailed ? 'failed' : '';
+          const badge = `badge-${run.status}`;
+          const time = run.updated_at ? parseTS(run.updated_at)?.toLocaleString() || "" : '';
+          const cleanTask = run.task.replace(/\u2014/g, ' - ');
+          const title = cleanTask.length > 60 ? cleanTask.slice(0, 57) + '...' : cleanTask;
+          return `<div class="card ${cls}" onclick="openRun('${run.id}')">
+            <div class="card-title" title="${cleanTask.replace(/"/g, '&quot;')}">${esc(title)}</div>
+            <div class="card-meta">
+              <span class="badge ${badge}">${run.status}</span>
+              <span>${time}</span>
+            </div>
+          </div>`;
+        }).join('');
+    return `<div class="column">
+      <div class="column-header">${step.id}<span class="count">${cards.length}</span></div>
+      <div class="cards">${cardHTML}</div>
+    </div>`;
+  }).join('');
+  if (board.innerHTML !== newHTML) board.innerHTML = newHTML;
+}
+
+const stepIcons = {done:'✓',running:'●',pending:'○',waiting:'◌',failed:'✗',error:'✗'};
+function esc(s) { if (!s) return ''; return s.replace(/\u2014/g,' - ').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+// Normalize SQLite datetime('now') format (no T/Z) to proper ISO 8601 UTC
+function parseTS(ts) { if (!ts) return null; if (!ts.endsWith('Z') && !ts.includes('+')) ts = ts.replace(' ', 'T') + 'Z'; return new Date(ts); }
+
+async function openRun(id) {
+  const run = await fetchJSON(`/api/runs/${id}`);
+  renderRunPanel(run);
+  await Promise.all([loadStories(id), loadActivity(id)]);
+  openRunId = id;
+  document.getElementById('overlay').classList.add('open');
+  startOpenRunRefresh();
+}
+
+async function refreshOpenRunPanel() {
+  if (!openRunId) return;
+  try {
+    const run = await fetchJSON(`/api/runs/${openRunId}`);
+    const panel = document.querySelector('.panel');
+    const scrollPos = panel ? panel.scrollTop : 0;
+    renderRunPanel(run);
+    if (panel) panel.scrollTop = scrollPos;
+    await Promise.all([loadStories(openRunId), loadActivity(openRunId)]);
+  } catch {
+    closePanel();
+  }
+}
+
+function renderRunPanel(run) {
+  const panel = document.getElementById('panel');
+  const created = run.created_at ? parseTS(run.created_at)?.toLocaleString() || "" : '';
+  const updated = run.updated_at ? parseTS(run.updated_at)?.toLocaleString() || "" : '';
+  const fmtDur = (ms) => { if (!ms || ms < 0) return '-'; const s = Math.floor(ms/1000); return `${Math.floor(s/60)}m ${String(s%60).padStart(2,'0')}s`; };
+  const stepsHTML = (run.steps || []).map(s => {
+    const st = s.status || 'waiting';
+    const icon = stepIcons[st] || '○';
+    const hasOutput = !!s.output;
+    const dur = (s.started_at && s.completed_at) ? fmtDur(new Date(s.completed_at+'Z').getTime() - new Date(s.started_at+'Z').getTime()) : (s.started_at ? 'running' : '-');
+    const toggleAttr = hasOutput ? `onclick="this.querySelector('.step-details').classList.toggle('step-open');this.querySelector('.step-chevron').classList.toggle('step-chevron-open')" style="cursor:pointer"` : '';
+    return `<div class="step-row" style="flex-direction:column;align-items:stretch;gap:0;padding:0;overflow:hidden" ${toggleAttr}>
+      <div style="display:flex;align-items:center;gap:8px;padding:10px 12px">
+        <div class="step-icon ${st}">${icon}</div>
+        <div class="step-name" style="flex:1">${s.step_id}</div>
+        <div style="font-family:'Space Grotesk',monospace;font-size:11px;color:var(--text-secondary);min-width:60px;text-align:right">${dur}</div>
+        <div class="step-agent">${s.agent_id || ''}</div>
+        <div class="step-status"><span class="badge badge-${st}">${st}</span></div>
+        ${hasOutput ? '<span class="step-chevron" style="color:var(--text-secondary);font-size:10px;transition:transform .15s;display:inline-block">▶</span>' : ''}
+      </div>
+      ${hasOutput ? `<div class="step-details" style="display:none;padding:0 12px 12px 44px;font-size:12px;color:var(--text-tertiary);line-height:1.6">
+        <details style="margin-top:4px" onclick="event.stopPropagation()"><summary style="font-size:11px;color:var(--text-secondary);cursor:pointer;font-weight:500">Output</summary><pre style="margin-top:6px;padding:8px;background:var(--bg-code);border:1px solid var(--border);border-radius:12px;font-family:'Space Grotesk',monospace;font-size:11px;white-space:pre-wrap;word-break:break-word;max-height:300px;overflow-y:auto">${esc(s.output)}</pre></details>
+      </div>` : ''}
+    </div>`;
+  }).join('');
+  const newPanelHTML = `
+    <button class="panel-close" onclick="closePanel()">✕</button>
+    <h2>${run.workflow_id}</h2>
+    <div class="panel-task">${esc(run.task)}</div>
+    <div class="panel-meta">
+      <span><span class="badge badge-${run.status}">${run.status}</span></span>
+      <span>Created: ${created}</span>
+      <span>Updated: ${updated}</span>
+    </div>
+    <div class="steps-list">${stepsHTML}</div>
+      <div id="stories-panel"></div>
+    <div id="activity-panel"></div>
+  `;
+  if (panel.innerHTML !== newPanelHTML) panel.innerHTML = newPanelHTML;
+}
+
+function formatEventDesc(evt) {
+  const e = evt.event;
+  const story = evt.storyTitle ? `${evt.storyId}: "${evt.storyTitle}"` : evt.storyId || '';
+  switch (e) {
+    case 'run.started': return 'Run started';
+    case 'run.completed': return 'Run completed ✅';
+    case 'run.failed': return 'Run failed ❌';
+    case 'step.pending': return `Step pending`;
+    case 'step.running': return `Claimed step`;
+    case 'step.done': return `Step completed`;
+    case 'step.failed': return `Step failed` + (evt.detail ? `: ${evt.detail.slice(0,80)}` : '');
+    case 'step.timeout': return `Step timed out` + (evt.detail ? ` - ${evt.detail}` : '');
+    case 'story.started': return `Claimed story ${story}`;
+    case 'story.done': return `Completed ${story}`;
+    case 'story.verified': return `Verified ${story} ✅`;
+    case 'story.retry': return `Retry ${story}` + (evt.detail ? ` - ${evt.detail.slice(0,80)}` : '');
+    case 'story.failed': return `Story failed ${story}`;
+    case 'pipeline.advanced': return `Pipeline advanced`;
+    default: return e;
+  }
+}
+
+async function loadActivity(runId) {
+  const events = await fetchJSON(`/api/runs/${runId}/events`);
+  const activityEl = document.getElementById('activity-panel');
+  if (!events || events.length === 0) { activityEl.innerHTML = ''; return; }
+  const rows = events.map(evt => {
+    const t = parseTS(evt.ts);
+    const time = t.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+    const agent = evt.agentId ? evt.agentId.split('/').pop() : '';
+    const desc = formatEventDesc(evt);
+    const agentSpan = agent
+      ? `<span style="color:var(--accent-teal);font-family:'Space Grotesk',monospace;flex-shrink:0">${esc(agent)}</span>`
+      : '';
+    return `<div style="display:flex;gap:12px;padding:4px 0;font-size:12px;line-height:1.5;border-bottom:1px solid var(--border-light)">
+      <span style="color:var(--text-secondary);font-family:'Space Grotesk',monospace;flex-shrink:0;min-width:44px">${time}</span>
+      ${agentSpan}
+      <span style="color:var(--text-primary)">${esc(desc)}</span>
+    </div>`;
+  }).join('');
+  const scrollPanel = document.querySelector('.panel');
+  const sp = scrollPanel ? scrollPanel.scrollTop : 0;
+  activityEl.innerHTML = `
+    <div style="margin-top:24px;border-top:1px solid var(--border);padding-top:20px">
+      <h3 style="font-size:15px;font-weight:600;color:var(--text-primary);margin-bottom:12px">Activity</h3>
+      <div style="max-height:300px;overflow-y:auto">${rows}</div>
+    </div>
+  `;
+  if (scrollPanel) scrollPanel.scrollTop = sp;
+}
+
+function closePanel() {
+  clearOpenRunRefresh();
+  openRunId = null;
+  document.getElementById('overlay').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+
+async function loadStories(runId) {
+  const stories = await fetchJSON(`/api/runs/${runId}/stories`);
+  const storiesEl = document.getElementById('stories-panel');
+  if (!stories || stories.length === 0) { storiesEl.innerHTML = ''; return; }
+  const done = stories.filter(s => s.status === 'done').length;
+  const pct = Math.round((done / stories.length) * 100);
+  const scrollPanel = document.querySelector('.panel');
+  const sp = scrollPanel ? scrollPanel.scrollTop : 0;
+  storiesEl.innerHTML = `
+    <div style="margin-top:24px;border-top:1px solid var(--border);padding-top:20px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <h3 style="font-size:15px;font-weight:600;color:var(--text-primary)">Stories</h3>
+        <span style="font-size:13px;font-weight:600;color:var(--accent-green)">${done} / ${stories.length} done</span>
+      </div>
+      <div style="background:var(--accent-muted);border-radius:12px;height:8px;margin-bottom:16px;overflow:hidden">
+        <div style="background:var(--accent-green);height:100%;width:${pct}%;border-radius:12px;transition:width .3s"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        ${stories.map((s, i) => {
+          const st = s.status || 'pending';
+          const icon = stepIcons[st] || '○';
+          let ac = [];
+          try { ac = JSON.parse(s.acceptance_criteria || '[]'); } catch { ac = [s.acceptance_criteria]; }
+          const retryInfo = s.retry_count > 0 ? ` <span style="color:var(--accent-orange);font-size:10px">(retry ${s.retry_count})</span>` : '';
+          const hasDetails = s.description || ac.length > 0 || s.output;
+          const toggleAttr = hasDetails ? `onclick="this.querySelector('.story-details').classList.toggle('story-open');this.querySelector('.story-chevron').classList.toggle('story-chevron-open')" style="cursor:pointer"` : '';
+          return `<div class="step-row" style="flex-direction:column;align-items:stretch;gap:0;padding:0;overflow:hidden" ${toggleAttr}>
+            <div style="display:flex;align-items:center;gap:8px;padding:10px 12px">
+              <div class="step-icon ${st}">${icon}</div>
+              <div class="step-name" style="flex:1">${s.story_id}: ${s.title}${retryInfo}</div>
+              <div class="step-status"><span class="badge badge-${st}">${st}</span></div>
+              ${hasDetails ? '<span class="story-chevron" style="color:var(--text-secondary);font-size:10px;transition:transform .15s;display:inline-block">▶</span>' : ''}
+            </div>
+            ${hasDetails ? `<div class="story-details" style="display:none;padding:0 12px 12px 44px;font-size:12px;color:var(--text-tertiary);line-height:1.6">
+              ${s.description ? `<div style="margin-bottom:8px">${esc(s.description)}</div>` : ''}
+              ${ac.length > 0 ? `<div style="margin-bottom:8px"><div style="font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.3px;color:var(--accent-green);margin-bottom:4px">Acceptance Criteria</div>${ac.map(c => `<label style="display:flex;align-items:flex-start;gap:6px;margin-bottom:3px;cursor:default"><span style="color:var(${st==='done'?'--accent-green':'--border'});flex-shrink:0">${st==='done'?'☑':'☐'}</span><span>${esc(c)}</span></label>`).join('')}</div>` : ''}
+              ${s.output ? `<details style="margin-top:4px" onclick="event.stopPropagation()"><summary style="font-size:11px;color:var(--text-secondary);cursor:pointer;font-weight:500">Output</summary><pre style="margin-top:6px;padding:8px;background:var(--bg-code);border:1px solid var(--border);border-radius:12px;font-family:'Space Grotesk',monospace;font-size:11px;white-space:pre-wrap;word-break:break-word;max-height:200px;overflow-y:auto">${esc(s.output)}</pre></details>` : ''}
+            </div>` : ''}
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+  `;
+  if (scrollPanel) scrollPanel.scrollTop = sp;
+}
+
+document.getElementById('wf-select').addEventListener('change', e => selectWorkflow(e.target.value));
+loadWorkflows();
+setInterval(() => { if (currentWf) loadRuns(); }, 30000);
+
+// ── Medic ───────────────────────────────────────────────────────
+let medicPanelOpen = false;
+
+function toggleMedicPanel() {
+  medicPanelOpen = !medicPanelOpen;
+  document.getElementById('medic-panel').classList.toggle('open', medicPanelOpen);
+  if (medicPanelOpen) loadMedicData();
+}
+
+document.addEventListener('click', e => {
+  if (!medicPanelOpen) return;
+  const panel = document.getElementById('medic-panel');
+  const badge = document.getElementById('medic-badge');
+  if (!panel.contains(e.target) && !badge.contains(e.target)) {
+    medicPanelOpen = false;
+    panel.classList.remove('open');
+  }
+});
+
+async function loadMedicStatus() {
+  try {
+    const status = await fetchJSON('/api/medic/status');
+    const dot = document.getElementById('medic-dot');
+    const label = document.getElementById('medic-label');
+
+    const timeText = document.getElementById('medic-time-text');
+    if (!status.installed || !status.lastCheck) {
+      dot.className = 'medic-dot unknown';
+      timeText.textContent = '';
+      return;
+    }
+
+    const ageMin = Math.round((Date.now() - parseTS(status.lastCheck.checkedAt).getTime()) / 60000);
+    const hasIssues = status.lastCheck.issuesFound > 0;
+    const isStale = ageMin > 10;
+
+    if (hasIssues && status.lastCheck.actionsTaken < status.lastCheck.issuesFound) {
+      dot.className = 'medic-dot critical';
+      timeText.textContent = `${status.lastCheck.issuesFound} issues - ${ageMin}m ago`;
+    } else if (isStale) {
+      dot.className = 'medic-dot warning';
+      timeText.textContent = `${ageMin}m ago`;
+    } else if (hasIssues) {
+      dot.className = 'medic-dot warning';
+      timeText.textContent = `${status.lastCheck.issuesFound} fixed - ${ageMin}m ago`;
+    } else {
+      dot.className = 'medic-dot healthy';
+      timeText.textContent = `${ageMin}m ago`;
+    }
+  } catch {
+    document.getElementById('medic-dot').className = 'medic-dot unknown';
+    document.getElementById('medic-time-text').textContent = '';
+  }
+}
+
+async function loadMedicData() {
+  const body = document.getElementById('medic-panel-body');
+  try {
+    const [status, checks] = await Promise.all([
+      fetchJSON('/api/medic/status'),
+      fetchJSON('/api/medic/checks?limit=10'),
+    ]);
+
+    let html = '';
+    html += '<div style="margin-bottom:12px">';
+    if (status.lastCheck) {
+      const ageMin = Math.round((Date.now() - parseTS(status.lastCheck.checkedAt).getTime()) / 60000);
+      html += `<div class="medic-stat"><span>Last check</span><span class="medic-stat-value">${ageMin}m ago</span></div>`;
+      html += `<div class="medic-stat"><span>Result</span><span class="medic-stat-value">${esc(status.lastCheck.summary)}</span></div>`;
+    } else {
+      html += '<div class="medic-stat"><span>Last check</span><span class="medic-stat-value">Never</span></div>';
+    }
+    html += `<div class="medic-stat"><span>Checks (24h)</span><span class="medic-stat-value">${status.recentChecks}</span></div>`;
+    html += `<div class="medic-stat"><span>Issues found (24h)</span><span class="medic-stat-value">${status.recentIssues}</span></div>`;
+    html += `<div class="medic-stat"><span>Auto-fixed (24h)</span><span class="medic-stat-value">${status.recentActions}</span></div>`;
+    html += '</div>';
+
+    if (checks.length > 0) {
+      html += '<div style="font-size:12px;font-weight:600;color:var(--text-primary);margin-bottom:8px">Recent Checks</div>';
+      for (const c of checks) {
+        const t = parseTS(c.checkedAt).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+        const icon = c.issuesFound === 0 ? '·' : c.actionsTaken > 0 ? '~' : '!';
+        const color = c.issuesFound === 0 ? 'var(--text-secondary)' : c.actionsTaken >= c.issuesFound ? 'var(--accent-teal)' : 'var(--accent-orange)';
+        html += `<div class="medic-check-row">
+          <span class="medic-check-time">${t}</span>
+          <span class="medic-check-summary" style="color:${color}">${icon} ${esc(c.summary)}</span>
+        </div>`;
+      }
+    }
+
+    body.innerHTML = html || '<div style="color:var(--text-secondary);font-size:12px;padding:8px 0">No medic data yet. Run <code>railgun medic install</code> to enable.</div>';
+  } catch {
+    body.innerHTML = '<div style="color:var(--text-secondary);font-size:12px;padding:8px 0">Could not load medic data.</div>';
+  }
+}
+
+loadMedicStatus();
+setInterval(loadMedicStatus, 30000);
+</script>
+</body>
+</html>
