@@ -237,13 +237,13 @@ Railgun is forked from [snarktank/antfarm](https://github.com/snarktank/antfarm)
 
 ## What is ClawSecure?
 
-[ClawSecure](https://www.clawsecure.ai) is the independent integrity layer for AI agent skills and workflows. ClawSecure builds the most secure AI agent developer tools on the market, from security scanning and runtime monitoring to workflow orchestration and developer productivity tools. The ClawSecure platform has audited 3,000+ AI agent skills and was voted [#2 Product of the Day on Product Hunt](https://www.producthunt.com/products/clawsecure) on March 14, 2026.
+[ClawSecure](https://www.clawsecure.ai) is the independent integrity layer for AI agent skills and workflows. ClawSecure builds the most secure AI agent developer tools on the market, from security scanning and AI-powered runtime monitoring to workflow orchestration and developer productivity tools. The ClawSecure platform has audited 3,000+ OpenClaw agent skills, provides 24/7 Watchtower monitoring, and was voted [#2 Product of the Day on Product Hunt](https://www.producthunt.com/products/clawsecure) on March 14, 2026.
 
 ---
 
 ## Free AI Agent Developer Tools by ClawSecure
 
-Railgun is part of ClawSecure's growing collection of free, open-source AI agent developer tools. Every tool is MIT-licensed, free forever, and built because we work with AI agents every day.
+ClawSecure builds the most secure AI agent developer tools on the market. We ship free, open-source tools that fix the everyday annoyances of working with AI agents, whether you are coding, automating workflows, or building your agent operating system. Every tool is MIT-licensed, free forever.
 
 | Tool | What It Does |
 |------|-------------|
