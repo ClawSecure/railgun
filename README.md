@@ -5,6 +5,8 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)](https://www.typescriptlang.org)
 [![ClawSecure](https://img.shields.io/badge/by-ClawSecure-blueviolet)](https://www.clawsecure.ai)
 
+![Railgun by ClawSecure -- deterministic agent orchestration engine with runtime limits, concurrency caps, and built-in cost controls for reliable multi-agent YAML workflows](assets/railgun-hero-banner.png)
+
 **Railgun is a free, open-source agent orchestration engine by ClawSecure that runs multi-agent workflows as deterministic YAML-defined pipelines.** Two AI agents [ping-ponged for 11 days and ran up a $47,000 bill](https://earezki.com/ai-news/2026-03-23-the-ai-agent-that-cost-47000-while-everyone-thought-it-was-working/) while everyone thought they were working. [88% of AI agent pilots never make it to production](https://composio.dev/blog/why-ai-agent-pilots-fail-2026-integration-roadmap). Chaining just 3 AI tools together drops reliability to [74%](https://fortune.com/2026/03/24/ai-agents-are-getting-more-capable-but-reliability-is-lagging-narayanan-kapoor/). The problem is not AI capability. The problem is that agents are improvising the workflow instead of following it.
 
 Railgun fixes this. You define the workers and the steps in a YAML file. Railgun runs them in order, passing work from one agent to the next. No agent decides the flow. The YAML does. That is why Railgun workflows are cheaper, more reliable, and fixable when something breaks.
