@@ -1,5 +1,7 @@
 # Railgun -- Agent Orchestration Engine for Reliable Multi-Agent Workflows
 
+[![#2 Product of the Day](https://img.shields.io/badge/%232_Product_of_the_Day-Product_Hunt-FF6154?style=for-the-badge&logo=producthunt&logoColor=white&labelColor=101010)](https://www.producthunt.com/products/clawsecure)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/Node.js-22%2B-green)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)](https://www.typescriptlang.org)
